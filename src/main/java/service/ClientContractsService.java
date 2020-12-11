@@ -1,15 +1,13 @@
 package service;
 
-import dto.Contract;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
 import dto.Client;
 import dto.ClientContract;
+import dto.Contract;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class ClientContractsService {
 
     private final JdbcTemplate jdbcTemplate;
