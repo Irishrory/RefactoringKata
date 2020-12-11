@@ -1,6 +1,6 @@
 CREATE TABLE CONTRACTS
 (
-    ID String varchar(255) PRIMARY KEY,
+    CONTRACT_ID String varchar(255) PRIMARY KEY,
     CLIENT_ID varchar(255),
     AMOUNT FLOAT
 );

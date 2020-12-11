@@ -18,11 +18,11 @@ public class ClientContractsService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<ClientContract> getClientContractsForCountry(String country) {
+    public List<ClientContract> getClientContracts() {
 
         List<Client> clients = jdbcTemplate.query("select * from CLIENTS", (rs, i) -> {
             return new Client(
-                    rs.getString("ID"),
+                    rs.getString("CLIENT_ID"),
                     rs.getString("FIRST_NAME"),
                     rs.getString("LAST_NAME"),
                     rs.getString("ADDRESS"),
@@ -31,7 +31,7 @@ public class ClientContractsService {
 
         List<Contract> contracts = jdbcTemplate.query("select * from CONTRACTS", (rs, i) -> {
             return new Contract(
-                    rs.getString("ID"),
+                    rs.getString("CONTRACT_D"),
                     rs.getString("CLIENT_ID"),
                     rs.getFloat("AMOUNT")
             );
@@ -39,20 +39,10 @@ public class ClientContractsService {
 
         List<ClientContract> clientContracts = buildClientContracts(clients, contracts);
 
-        filter(clientContracts, country);
-
         return clientContracts;
     }
 
-    private void filter(List<ClientContract> clientContracts, String country) {
-        for (ClientContract clientContract: clientContracts){
-            if (clientContract.getClient().getCountry().equals(country)){
-                clientContracts.remove(clientContract);
-            }
-        }
-    }
-
-    List<ClientContract> buildClientContracts(List<Client> clients, List<Contract> contracts) {
+    private List<ClientContract> buildClientContracts(List<Client> clients, List<Contract> contracts) {
 
         List<ClientContract> clientContracts = new ArrayList<>();
 
