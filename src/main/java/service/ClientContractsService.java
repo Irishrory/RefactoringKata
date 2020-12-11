@@ -37,9 +37,7 @@ public class ClientContractsService {
             );
         });
 
-        List<ClientContract> clientContracts = buildClientContracts(clients, contracts);
-
-        return clientContracts;
+        return buildClientContracts(clients, contracts);
     }
 
     private List<ClientContract> buildClientContracts(List<Client> clients, List<Contract> contracts) {
